@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content = "width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 1, user-scalable = no" />
+<style>
+#frame {
+  display: table;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  background-image: url(analog-face.jpg);
+  background-size: cover;   
+  position: relative;
+}
+#sec { 
+  positon: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(sec.png);
+  background-size: cover;
+}
+#min {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(min.png);
+  background-size: cover;
+}
+#hour {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(hour.png);
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+<div id="frame">
+  <div id="sec">
+  </div>
+  <div id="min">
+  </div>
+  <div id="hour">
+  </div>
+</div>
+<script>
+var date;
+var secElem = document.getElementById("sec");
+var minElem = document.getElementById("min");
+var hourElem = document.getElementById("hour");
+//Rotate the needle by changing its css style
+var rotate = function( elem, range, value ) {
+  elem.style.transform = "rotate(" + (value/range*360) + "deg)";
+};
+//check current time and rotate hands
+var watch = function() {
+  date = new Date();
+  rotate( secElem, 60, date.getSeconds() ); 
+  rotate( minElem, 60, date.getMinutes() );
+  rotate( hourElem, 12, date.getHours() );
+};
+//update watch in every 1000 milliseconds
+setInterval( watch, 1000 );
+</script>
+</body>
+</html>
